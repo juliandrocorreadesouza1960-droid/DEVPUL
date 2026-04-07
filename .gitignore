@@ -1,0 +1,8 @@
+node_modules/
+artifacts/
+cache/
+typechain-types/
+.env
+generated-team-wallets.local.json
+coverage/
+coverage.json

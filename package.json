@@ -1,0 +1,18 @@
+{
+  "name": "devpul-bsc-contract",
+  "private": true,
+  "version": "0.1.0",
+  "description": "DEVPUL — BEP-20 com taxa 4% (BSC testnet / mainnet)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network bscTestnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network bsc"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^17.4.0",
+    "hardhat": "^2.22.0"
+  }
+}

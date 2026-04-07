@@ -1,0 +1,33 @@
+        name = user.full_name or "novo membro"
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text=f"Bem-vindo(a), {name}! Leia as regras fixadas e se apresente.",
+        )
+async def welcome_chat_member(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    cmu = update.chat_member
+    if not cmu:
+        return
+    old, new, user = cmu.old_chat_member, cmu.new_chat_member, cmu.new_chat_member.user
+    if user.is_bot:
+        return
+    if new.status in ("member", "restricted") and old.status in ("left", "kicked"):
+        name = user.full_name or "novo membro"
+        await context.bot.send_message(
+            chat_id=cmu.chat.id,
+            text=f"Bem-vindo(a), {name}! Leia as regras fixadas e se apresente.",
+        )
+def main() -> None:
+    if not TOKEN or TOKEN == "8690806936:AAG6GkkfdBJtdzPqJ2tzEwB8IhILXKb1_T8":
+        print(
+            "Configure o token:\n"
+            "  1) Edite welcome_bot.py e troque COLOQUE_SEU_TOKEN_AQUI pelo token do @BotFather, ou\n"
+            "  2) No PowerShell: $env:TELEGRAM_BOT_TOKEN='seu_token'; python welcome_bot.py"
+        )
+        return
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_chat_members))
+    app.add_handler(ChatMemberHandler(welcome_chat_member, ChatMemberHandler.CHAT_MEMBER))
+    print("Bot rodando. Deixe esta janela aberta. Ctrl+C para parar.")
+    app.run_polling(allowed_updates=Update.ALL_TYPES)
+if __name__ == "__main__":
+    main()
