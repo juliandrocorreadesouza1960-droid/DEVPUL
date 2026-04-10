@@ -17,7 +17,7 @@ async def welcome_chat_member(update: Update, context: ContextTypes.DEFAULT_TYPE
             text=f"Bem-vindo(a), {name}! Leia as regras fixadas e se apresente.",
         )
 def main() -> None:
-    if not TOKEN or TOKEN == "8690806936:AAG6GkkfdBJtdzPqJ2tzEwB8IhILXKb1_T8":
+    if not TOKEN or TOKEN == "COLOQUE_SEU_TOKEN_AQUI":
         print(
             "Configure o token:\n"
             "  1) Edite welcome_bot.py e troque COLOQUE_SEU_TOKEN_AQUI pelo token do @BotFather, ou\n"
